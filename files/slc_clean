@@ -32,8 +32,8 @@ show_help() {
 
 
 get_options() {
-    OPTION=$(getopt --options s:c:y:h \
-             --long svc:,count:,yes:,help \
+    OPTION=$(getopt --options s:c:yh \
+             --long svc:,count:,yes,help \
              -- "$@")
 
     # exit if the options have not properly been gathered
@@ -46,8 +46,8 @@ get_options() {
         case "$1" in
             -s|--svc) SVC="$2" ; shift 2 ;;
             -c|--count) COUNT="$2" ; shift 2 ;;
-            -y|--yes) YES=1 ; shift 2 ;;
-            -h|--help) show_help ;exit 1 ;;
+            -y|--yes) YES=1 ; shift 1;;
+            -h|--help) show_help ; exit 1 ;;
             --) shift; break;;
             *) echo "Internal error!" ; exit 1 ;;
         esac
