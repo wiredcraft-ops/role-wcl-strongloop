@@ -5,3 +5,10 @@
 - include: "redhat.yml"
   when: ansible_os_family == "RedHat"
 
+- name: Install slc_clean to /usr/local/bin
+  copy:
+    src=files/slc_clean
+    dest=/usr/local/bin/slc_clean
+    owner=root
+    group=root
+    mode=755
