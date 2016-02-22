@@ -97,6 +97,8 @@ for folder in *; do
             else
                 rm -rf $folder
             fi
+        else
+            echo "$folder is not a match, skipping..."
         fi
     fi
 done
