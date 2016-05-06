@@ -12,7 +12,7 @@
   with_items:
       "{{ strongloop_instances | default([]) }}"
 
-  when: strongloop_build
+  when: strongloop_deploy
 
 - name: Install slc_clean to /usr/local/bin
   copy:
