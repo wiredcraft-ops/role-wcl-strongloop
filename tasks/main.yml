@@ -6,6 +6,7 @@
   when: ansible_os_family == "RedHat" and strongloop_install
 
 - include: "strongloop_build.yml"
+
   when: strongloop_build
 
 - name: Install slc_clean to /usr/local/bin

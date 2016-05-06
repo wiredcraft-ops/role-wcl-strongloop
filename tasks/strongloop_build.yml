@@ -4,27 +4,9 @@
   set_fact:
     repo_path: "{{ repo_url | basename | regex_replace('.git','') }}"
 
-- name: Fetch code
-  git:
-    repo={{ repo_url }}
-    dest=/opt/{{ project_name }}/{{ repo_path }}
-    version={{ repo_version }}
-    track_submodules=yes
-    accept_hostkey=yes
-
-- name: Install code dependencies
-  npm:
-    path=/opt/{{ project_name }}/{{ repo_path }}
-    executable='npm --unsafe-perm'
-
-- name: Prepare code build
-  command:
-    chdir=/opt/{{ project_name }}/{{ repo_path }}
-    slc build
-
 #
 # Add the support for multi versions of the same code
 #
-- include: deploy.yml
-  with_dict:
-    "{{ repo_envs | default({'1': repo_env}) }}"
+- include: strongloop_deploy.yml
+  with_items:
+      "{{ strongloop_instances | default([]) }}"

@@ -1,10 +1,28 @@
 ---
+- name: Fetch code
+  git:
+    repo={{ item.repo }}
+    dest=/opt/{{ item.project_name }}/{{ repo_path }}
+    version={{ item.version }}
+    track_submodules=yes
+    accept_hostkey=yes
+
+- name: Install code dependencies
+  npm:
+    path=/opt/{{ item.project_name }}/{{ repo_path }}
+    executable='npm --unsafe-perm'
+
+- name: Prepare code build
+  command:
+    chdir=/opt/{{ item.project_name }}/{{ repo_path }}
+    slc build
+
 - name: Deploy code
   command:
-    chdir=/opt/{{ project_name }}/{{ repo_path }}
-    slc deploy --service {{ item.key }}
+    chdir=/opt/{{ item.project_name }}/{{ repo_path }}
+    slc deploy --service {{ item.id }}
 
 - name: Set proper environment variable
   command:
-    slc ctl env-set {{ item.key }} \
-    {% for key, value in item.value.iteritems() %}{{ key }}="{{ value }}" {% endfor %}
+    slc ctl env-set {{ item.id }} \
+    {% for key, value in item.env.iteritems() %}{{ key }}="{{ value }}" {% endfor %}

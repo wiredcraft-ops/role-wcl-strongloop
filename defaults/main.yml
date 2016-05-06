@@ -3,11 +3,12 @@ project_name: project
 strongloop_install: true
 strongloop_build: false
 
-# Git URL
-repo_url: git@github.com/someone/some_repo.git
-# Git version / branch / tag
-repo_version: master
-
 # The env var to apply to the node code
-repo_env: 
-    NODE_ENV: production
+
+strongloop_instances:
+  - id: 1
+    update: true
+    repo: git@github.com/someone/some_repo.git
+    version: master
+    env:
+      NODE_ENV: production
