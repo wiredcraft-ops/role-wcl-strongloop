@@ -5,7 +5,12 @@
 - include: "install_redhat.yml"
   when: ansible_os_family == "RedHat" and strongloop_install
 
-- include: "strongloop_build.yml"
+#
+# Add the support for multi versions of the same code
+#
+- include: strongloop_deploy.yml
+  with_items:
+      "{{ strongloop_instances | default([]) }}"
 
   when: strongloop_build
 

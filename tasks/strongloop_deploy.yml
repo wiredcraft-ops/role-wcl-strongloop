@@ -1,4 +1,9 @@
 ---
+# tasks file for deploying strongloop code
+- name: Set destination for the code
+  set_fact:
+    repo_path: "{{ item.repo | basename | regex_replace('.git','') }}"
+
 - name: Fetch code
   git:
     repo={{ item.repo }}
