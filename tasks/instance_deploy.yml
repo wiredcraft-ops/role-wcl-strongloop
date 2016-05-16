@@ -11,6 +11,7 @@
     version={{ item.version }}
     track_submodules=yes
     accept_hostkey=yes
+    force=yes
 
 - name: Install code dependencies
   npm:
