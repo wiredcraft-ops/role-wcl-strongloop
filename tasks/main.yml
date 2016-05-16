@@ -9,9 +9,9 @@
 # Add the support for multi versions of the same code
 #
 - include: strongloop_deploy.yml
+  when: item.update
   with_items:
     "{{ strongloop_instances | default([]) }}"
-  when: strongloop_deploy
 
 - name: Install slc_clean to /usr/local/bin
   copy:
