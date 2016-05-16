@@ -14,7 +14,7 @@ To use:
 variables:
 
 * `strongloop_install`: if setting up strongloop and strong-pm
-* `strongloop-instances`: a list of config for each strongloop instance
+* `strongloop_instances`: a list of config for each strongloop instance
 
 Note:
 
