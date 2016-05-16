@@ -1,5 +1,4 @@
 ---
-project_name: project
 strongloop_install: true
 strongloop_deploy: false
 
