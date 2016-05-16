@@ -25,14 +25,15 @@ For each config, `update` means if deploy this instance at this run.
 - hosts: app
   vars_prompt:
     - name: prompt_update_1
-      prompt: "Deploy this repo? (yes/no) default: yes"
+      prompt: "Deploy this repo?"
       default: yes
+      private: false
   roles:
     - role: wcl-strongloop
       strongloop_install: false
       strongloop_instances:
         - id: 1
-          project_name: project
+          name: project
           update: "{{ prompt_update_1 }}"
           repo: git@github.com/someone/some_repo.git
           version: master

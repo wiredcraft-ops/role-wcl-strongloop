@@ -5,7 +5,7 @@ strongloop_install: true
 
 strongloop_instances:
   - id: 1
-    project_name: project
+    name: project_name
     update: true
     repo: git@github.com/someone/some_repo.git
     version: master
