@@ -19,7 +19,8 @@ variables:
 
 Note:
 
-For each config, `update` means if deploy this instance at this run.
+* For each config, `update` means if deploy this instance at this run.
+* For each config, `name` should be unique, it will be used as identifier when deploying with strongloop.
 
 ```
 ---
@@ -34,8 +35,7 @@ For each config, `update` means if deploy this instance at this run.
       strongloop_install: false
       strongloop_deploy: yes
       strongloop_instances:
-        - id: 1
-          name: project
+        - name: project
           update: "{{ prompt_update_1 }}"
           repo: git@github.com/someone/some_repo.git
           version: master
