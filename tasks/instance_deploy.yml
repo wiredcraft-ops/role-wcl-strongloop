@@ -1,0 +1,34 @@
+---
+# tasks file for deploying strongloop code
+- name: Set destination for the code
+  set_fact:
+    repo_path: "{{ item.repo | basename | regex_replace('.git','') }}"
+
+- name: Fetch code
+  git:
+    repo={{ item.repo }}
+    dest=/opt/{{ item.name }}/{{ repo_path }}
+    version={{ item.version }}
+    track_submodules=yes
+    accept_hostkey=yes
+    force=yes
+
+- name: Install code dependencies
+  npm:
+    path=/opt/{{ item.name }}/{{ repo_path }}
+    executable='npm --unsafe-perm'
+
+- name: Prepare code build
+  command:
+    chdir=/opt/{{ item.name }}/{{ repo_path }}
+    slc build
+
+- name: Deploy code
+  command:
+    chdir=/opt/{{ item.name }}/{{ repo_path }}
+    slc deploy --service {{ item.id }}
+
+- name: Set proper environment variable
+  command:
+    slc ctl env-set {{ item.id }} \
+    {% for key, value in item.env.iteritems() %}{{ key }}="{{ value }}" {% endfor %}
