@@ -1,9 +1,9 @@
 ---
 - include: "install_debian.yml"
-  when: ansible_os_family == "Debian" and strongloop_install
+  when: ansible_os_family == "Debian" and strongloop_install | bool
 
 - include: "install_redhat.yml"
-  when: ansible_os_family == "RedHat" and strongloop_install
+  when: ansible_os_family == "RedHat" and strongloop_install | bool
 
 #
 # Add the support for multi versions of the same code
