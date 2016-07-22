@@ -8,6 +8,7 @@ strongloop_instances:
   - name: project_name
     update: true
     repo: git@github.com/someone/some_repo.git
+    instance_root: "."
     version: master
     env:
       NODE_ENV: production
