@@ -28,7 +28,7 @@
 - name: Prepare code build
   command:
     chdir=/opt/{{ item.name }}/{{ repo_path }}/{{ instance_root }}
-    slc build --npm
+    slc build {% if use_package %}--npm{% endif %}
   when:
     forced or updated.changed
 

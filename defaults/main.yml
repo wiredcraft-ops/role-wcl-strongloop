@@ -15,3 +15,4 @@ strongloop_instances:
 
 # `forced` define whether or not to force the update
 forced: false
+use_package: false
