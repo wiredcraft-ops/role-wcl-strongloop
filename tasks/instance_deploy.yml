@@ -6,7 +6,7 @@
 
 - name: Set instance root for this repo
   set_fact:
-    instance_root: "{% if item.instance_root %}{{ item.instance_root }}{% else %}.{% endif %}"
+    instance_root: "{{ item.instance_root | default('.') }}"
 
 - name: Fetch code
   git:
