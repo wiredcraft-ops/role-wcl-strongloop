@@ -3,14 +3,18 @@ strongloop_install: true
 strongloop_deploy: false
 
 # The env var to apply to the node code
-
+# instance_root is the root folder of node project relative to the root of the repo
 strongloop_instances:
   - name: project_name
     update: true
     repo: git@github.com/someone/some_repo.git
+    instance_root: "."
     version: master
     env:
       NODE_ENV: production
 
 # `forced` define whether or not to force the update
 forced: false
+
+# `use_package` means if use `--npm` when `slc build`
+use_package: false
