@@ -14,19 +14,35 @@
     executable='npm --unsafe-perm'
   with_items:
     - strong-pm
-    - strongloop
+    - strong-deploy
 
 - name: Redhat | Install Strongloop Process Manager init script
   command:
     creates=/etc/systemd/system/strong-pm.service
     sl-pm-install --systemd
 
-- name: Redhat | Enable Strongloop Process Manager service
+- name: Redhat | Create custom config folder
+  file:
+    name: /etc/systemd/system/strong-pm.service.d
+    state: directory
+    mode: 0755
+
+- name: Redhat | Add strong-pm.service custom config
+  templaete:
+    src: etc_systemd_system_strong-pm.service.d_custom.conf.j2
+    dest: /etc/systemd/system/strong-pm.service.d/custom.conf
+    owner: root
+  register: strong_pm_systemd_custom_conf
+
+- name: Redhat | Restart strong-pm
+  systemd:
+    name: strong-pm
+    state: restarted
+    daemon_reload: yes
+  when: strong_pm_systemd_custom_conf.changed
+
+- name: Redhat | Enable and Start Strongloop Process Manager service
   service:
     name=strong-pm
     enabled=true
-
-- name: Redhat | Start Strongloop Process Manager service
-  service:
-    name=strong-pm
     state=started

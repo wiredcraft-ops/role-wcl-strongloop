@@ -18,3 +18,6 @@ forced: false
 
 # `use_package` means if use `--npm` when `slc build`
 use_package: false
+
+node_version: v6.10.2
+strong_pm_skip_default_install: true
