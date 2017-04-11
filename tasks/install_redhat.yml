@@ -27,8 +27,12 @@
     state: directory
     mode: 0755
 
+- name: Redhat | Get strong-pm origin ExecStart
+  shell: grep -E '^ExecStart' /etc/systemd/system/strong-pm.service
+  register: strong_pm_origin_exec_start
+
 - name: Redhat | Add strong-pm.service custom config
-  templaete:
+  template:
     src: etc_systemd_system_strong-pm.service.d_custom.conf.j2
     dest: /etc/systemd/system/strong-pm.service.d/custom.conf
     owner: root
