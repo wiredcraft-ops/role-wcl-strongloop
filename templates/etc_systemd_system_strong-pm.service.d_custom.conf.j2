@@ -1,5 +1,6 @@
 {% if strong_pm_origin_exec_start is defined and strong_pm_origin_exec_start.stdout %}
 [Service]
 ExecStart=
-ExecStart={{ strong_pm_origin_exec_start.stdout }} {% if strong_pm_skip_default_install %} --skip-default-install {% endif %}}
+{# strong_pm_origin_exec_start already includes ExecStart= prefix #}
+{{ strong_pm_origin_exec_start.stdout }} {% if strong_pm_skip_default_install %} --skip-default-install {% endif %}
 {% endif %}
