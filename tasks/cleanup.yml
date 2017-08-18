@@ -5,4 +5,4 @@
     name: cleanup old work folders
     minute: 0
     hour: 1
-    job: ls -ldt /var/lib/strong-pm/svc/1/work/* | tail -n +3 | sudo xargs rm -rf
+    job: ls -ldt /var/lib/strong-pm/svc/1/work/* | tail -n +3 | xargs rm -rf
