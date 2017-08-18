@@ -5,6 +5,8 @@
 - include: "install_redhat.yml"
   when: ansible_os_family == "RedHat" and strongloop_install | bool
 
+- include: "cleanup.yml"
+
 #
 # Add the support for multi versions of the same code
 #

@@ -1,0 +1,8 @@
+---
+# cleanup old work folders to save disk space
+- name: Cleanup old work folders
+  cron:
+    name: cleanup old work folders
+    minute: 0
+    hour: 1
+    job: ls -ldt /var/lib/strong-pm/svc/1/work/* | tail -n +3 | sudo xargs rm -rf
